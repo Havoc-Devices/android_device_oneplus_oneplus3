@@ -438,4 +438,7 @@
     <!-- Whether device has physical tri state switch -->
     <bool name="config_hasAlertSlider">true</bool>
 
+    <!-- Whether to enable OnePlus Camera hack -->
+    <bool name="config_enableOnePlusCameraHack">true</bool>
+
 </resources>
