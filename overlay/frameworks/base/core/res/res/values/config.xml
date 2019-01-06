@@ -417,4 +417,7 @@
     -->
     <integer name="config_deviceSupportsButtonBrightnessControl">2</integer>
 
+    <!-- Whether device has dash charging support -->
+    <bool name="config_hasDashCharger">true</bool>
+
 </resources>
