@@ -34,6 +34,8 @@
         <device name="SND_DEVICE_IN_UNPROCESSED_QAUD_MIC" acdb_id="146"/>
         <device name="SND_DEVICE_IN_UNPROCESSED_HEADSET_MIC" acdb_id="147"/>
         <device name="SND_DEVICE_OUT_VOICE_SPEAKER" acdb_id="15" />
+        <device name="SND_DEVICE_IN_HANDSET_STEREO_DMIC_EF" acdb_id="69"/>
+        <device name="SND_DEVICE_IN_HANDSET_STEREO_DMIC" acdb_id="69"/>
     </acdb_ids>
     <bit_width_configs>
         <device name="SND_DEVICE_OUT_SPEAKER" bit_width="24"/>
