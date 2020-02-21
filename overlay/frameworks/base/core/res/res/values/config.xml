@@ -94,22 +94,11 @@
     <string name="config_mms_user_agent_profile_url" translatable="false"
             >http://www.google.com/oha/rdf/ua-profile-kila.xml</string>
 
-    <!-- Configuration to restart radio upon PDP_DEACTIVATE with
-         error cause as Regular deactivation(36). -->
-    <!--
-    <bool name="config_radio_reset_on_regular_deactivation">false</bool>
-    -->
     <!-- Flag indicating if the speed up audio on mt call code should be executed -->
     <bool name="config_speed_up_audio_on_mt_calls">true</bool>
 
     <!-- Whether camera shutter sound is forced or not  (country specific). -->
     <bool name="config_camera_sound_forced">false</bool>
-
-    <!-- Configuration to enable non-default PDP during IWLAN
-    <bool name="config_feature_iwlan_enabled">true</bool> -->
-
-    <!-- Is the device capable of supporting digital pen
-    <bool name="config_digitalPenCapable">true</bool> -->
 
     <!-- Flag specifying whether VoLTE, VT and WFC is available on device -->
     <bool name="config_device_volte_available">true</bool>
@@ -120,7 +109,6 @@
          carrier provisioning. If false: hard disabled. If true: then depends on carrier
          provisioning, availability etc -->
     <bool name="config_carrier_volte_available">true</bool>
-
 
     <string-array name="config_mobile_tcp_buffers">
         <item>"5gnr:2097152,6291456,16777216,512000,2097152,8388608"</item>
@@ -135,7 +123,6 @@
         <item>"gprs:4092,8760,11680,4096,8760,11680"</item>
         <item>"evdo:4094,87380,524288,4096,16384,262144"</item>
     </string-array>
-
 
     <!-- Config determines whether to update phone object when voice registration
     state changes. Voice radio tech change will always trigger an update of
@@ -326,4 +313,108 @@
     <string-array name="config_biometric_sensors" translatable="false" >
         <item>0:2:15</item> <!-- ID0:Fingerprint:Strong -->
     </string-array>
+
+    <!-- All the capabilities of the LEDs on this device, stored as a bit field.
+         This integer should equal the sum of the corresponding value for each
+         of the following capabilities present:
+
+         // Device has a color adjustable notification light.
+         LIGHTS_RGB_NOTIFICATION_LED = 1
+
+         // Device has a color adjustable battery light.
+         LIGHTS_RGB_BATTERY_LED = 2
+
+         LIGHTS_MULTIPLE_NOTIFICATION_LED = 4 (deprecated)
+
+         // The notification light has adjustable pulsing capability.
+         LIGHTS_PULSATING_LED = 8
+
+         // Device has a multi-segment battery light that is able to
+         // use the light brightness value to determine how many
+         // segments to show (in order to represent battery level).
+         LIGHTS_SEGMENTED_BATTERY_LED = 16
+
+         // The notification light supports HAL adjustable brightness
+         // via the alpha channel.
+         // Note: if a device notification light supports LIGHTS_RGB_NOTIFICATION_LED
+         // then HAL support is not necessary for brightness control.  In this case,
+         // brightness support will be provided by lineage-sdk through the scaling of
+         // RGB color values.
+         LIGHTS_ADJUSTABLE_NOTIFICATION_LED_BRIGHTNESS = 32
+
+         // Device has a battery light.
+         LIGHTS_BATTERY_LED = 64
+
+         // The battery light supports HAL adjustable brightness via
+         // the alpha channel.
+         // Note: if a device battery light supports LIGHTS_RGB_BATTERY_LED then HAL
+         // support is not necessary for brightness control.  In this case,
+         // brightness support will be provided by lineage-sdk through the scaling of
+         // RGB color values.
+         LIGHTS_ADJUSTABLE_BATTERY_LED_BRIGHTNESS = 128
+
+         For example, a device with notification and battery lights that supports
+         pulsating and RGB control would set this config to 75. -->
+    <integer name="config_deviceLightCapabilities">75</integer>
+
+    <!-- For high brightness mode -->
+    <integer name="config_outdoorAmbientLux">20000</integer>
+
+    <!-- Turn on LiveDisplay auto mode by default -->
+    <integer name="config_defaultLiveDisplayMode">2</integer>
+
+    <!-- Display mode remapping table.
+         If the mode names returned by the backend do not match
+         the predefined and translated strings in the Settings
+         app, they can be remapped here. The format is
+         "oldname:newname", one per entry. -->
+    <string-array name="config_displayModeMappings" translatable="false">
+        <item>standard:standard</item>
+        <item>dynamic:dynamic</item>
+        <item>cinema:cinema</item>
+        <item>astronomy:astronomy</item>
+        <item>photography:photography</item>
+        <item>basic:basic</item>
+        <item>srgb:srgb</item>
+        <item>dci_p3:dci_p3</item>
+    </string-array>
+
+    <!-- Should we filter any display modes which are unampped? -->
+    <bool name="config_filterDisplayModes">true</bool>
+
+    <!-- Hardware keys present on the device, stored as a bit field.
+         This integer should equal the sum of the corresponding value for each
+         of the following keys present:
+             1 - Home
+             2 - Back
+             4 - Menu
+             8 - Assistant (search)
+            16 - App switch
+            32 - Camera
+            64 - Volume rocker
+         For example, a device with Home, Back and Menu keys would set this
+         config to 7. -->
+    <integer name="config_deviceHardwareKeys">83</integer>
+
+    <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.
+         This integer should equal the sum of the corresponding value for each
+         of the following keys present:
+             1 - Home
+             2 - Back
+             4 - Menu
+             8 - Assistant (search)
+            16 - App switch
+            32 - Camera
+            64 - Volume rocker
+         For example, a device with Home, Back and Menu keys would set this
+         config to 7. -->
+    <integer name="config_deviceHardwareWakeKeys">64</integer>
+
+    <!-- Button backlight control. Possible values are:
+            0 - Not supported
+            1 - Supported, but only on/off mode
+            2 - Supported with variable brightness control
+    -->
+    <integer name="config_deviceSupportsButtonBrightnessControl">2</integer>
+
 </resources>
