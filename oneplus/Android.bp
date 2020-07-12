@@ -1,0 +1,9 @@
+java_library {
+    name: "oneplus-mock",
+    owner: "oneplus",
+    installable: true,
+
+    srcs: [
+        "src/*/*/*/*.java",
+    ],
+}
