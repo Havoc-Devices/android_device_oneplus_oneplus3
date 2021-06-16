@@ -441,4 +441,7 @@
     <!-- Whether to enable OnePlus Camera hack -->
     <bool name="config_enableOnePlusCameraHack">true</bool>
 
+    <!-- Specify custom blanking delay of the display -->
+    <integer name="config_screen_off_delay">0</integer>
+
 </resources>
