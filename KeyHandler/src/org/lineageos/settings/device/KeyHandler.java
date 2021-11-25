@@ -16,10 +16,14 @@
 
 package org.lineageos.settings.device;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.media.AudioManager;
+import android.media.AudioSystem;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.provider.Settings;
 import android.view.KeyEvent;
 
 import com.android.internal.os.DeviceKeyHandler;
@@ -43,18 +47,42 @@ public class KeyHandler implements DeviceKeyHandler {
         mVibrator = mContext.getSystemService(Vibrator.class);
     }
 
+    private boolean wasMuted = false;
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int stream = intent.getIntExtra(AudioManager.EXTRA_VOLUME_STREAM_TYPE, -1);
+            boolean state = intent.getBooleanExtra(AudioManager.EXTRA_STREAM_VOLUME_MUTED, false);
+            if (stream == AudioSystem.STREAM_MUSIC && state == false) {
+                wasMuted = false;
+            }
+        }
+    };
+
     public KeyEvent handleKeyEvent(KeyEvent event) {
         int scanCode = event.getScanCode();
+        boolean muteMedia = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.ALERT_SLIDER_MUTE_MEDIA, 0) == 1;
 
         switch (scanCode) {
             case MODE_NORMAL:
                 mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
+                if (muteMedia && wasMuted) {
+                    mAudioManager.adjustVolume(AudioManager.ADJUST_UNMUTE, 0);
+                }
                 break;
             case MODE_VIBRATION:
                 mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_VIBRATE);
+                if (muteMedia && wasMuted) {
+                    mAudioManager.adjustVolume(AudioManager.ADJUST_UNMUTE, 0);
+                }
                 break;
             case MODE_SILENCE:
                 mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_SILENT);
+                if (muteMedia) {
+                    mAudioManager.adjustVolume(AudioManager.ADJUST_MUTE, 0);
+                    wasMuted = true;
+                }
                 break;
             default:
                 return event;
