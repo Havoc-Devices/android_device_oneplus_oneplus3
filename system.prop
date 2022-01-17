@@ -202,8 +202,8 @@ vendor.display.foss.config=1
 vendor.display.foss.config_path=/vendor/etc/FOSSConfig.xml
 
 # Havoc-OS
-ro.havoc.device.name=OnePlus 3/T
-ro.havoc.group.url=https://t.me/havoc_oneplus3
+ro.havoc.device.name=OnePlus 3 / 3T
+ro.havoc.group.url=https://t.me/+RKCZvqYf-no-5_iO
 ro.havoc.maintainer=Anushek Prasal
 ro.havoc.maintainer.username=SKULSHADY
 
